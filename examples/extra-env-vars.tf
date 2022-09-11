@@ -6,10 +6,10 @@ module "spectral_lambda_integration" {
   integration_type = "terraform"
 
   env_vars = {
-    SPECTRAL_DSN      = "MySpectralDSN"
-    CHECK_POLICY      = "Always Pass"
-    TERRFORM_USER_KEY = "MY-KEY"
-    GITHUB_TOKEN      = "MY-TOKEN"
+    SPECTRAL_DSN       = "MySpectralDSN"
+    CHECK_POLICY       = "Always Pass"
+    TERRAFORM_USER_KEY = "MY-KEY"
+    GITHUB_TOKEN       = "MY-TOKEN"
     # Extra environment variables goes here...
   }
 }
