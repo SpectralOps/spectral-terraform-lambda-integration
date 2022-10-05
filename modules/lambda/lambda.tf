@@ -1,7 +1,6 @@
 locals {
   runtime                           = "nodejs14.x"
   lambda_handler                    = "handler.app"
-  public_spectral_version_layer_arn = "arn:aws:lambda:us-east-1:597416911928:layer:spectral_scanner:23"
   lambda_source_code_zip_path       = "${path.module}/source_code/${var.integration_type}/app.zip"
 }
 
@@ -14,8 +13,6 @@ resource "aws_lambda_function" "spectral_scanner_lambda" {
   timeout       = var.timeout
   memory_size   = var.memory_size
   publish       = var.publish
-
-  layers = [local.public_spectral_version_layer_arn]
 
   tags = merge(
     var.global_tags,
