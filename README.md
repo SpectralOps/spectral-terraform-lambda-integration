@@ -23,7 +23,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | `account_id` | AWS Account ID number of the account in which to manage resources. | `number` | N/A | Yes |
 | `aws_region` | The region in which to manage resources.| `string` | N/A | Yes |
 | `environment` | The target environment name for deployment | `string` | `prod` | No |
-| `integration_type` | Spectral integration type (A unique phrase describing the integration) - Available values: `terraform` | `string` | N/A | Yes |
+| `integration_type` | Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`, `jira` and `gitlab` | `string` | N/A | Yes |
 | [`env_vars`](#env_vars) | Extendable object contains all required environment variables required for the integration. | `map(string)` | N/A | No |
 | [`global_tags`](#global_tags) | Tags to be applied on every newly created resource. | `map(string)` | ```{ BusinessUnit = "Spectral" }``` | No |
 | [`tags`](#tags) | Tags to be applied on concrete resources  | `map(map(string))` | ```{ iam = { } lambda = { } api_gateway = { } }``` | No |
@@ -36,23 +36,13 @@ Terraform configuration used to create the required AWS resources for integratin
 ### env_vars
 
 In some integrations, Spectral requires some extra environment variables besides the default ones.
-Those extra variables should be added to the `env_vars` map in addition to `CHECK_POLICY` and `SPECTRAL_DSN` which are mandatory.
+Those extra variables should be added to the `env_vars` map in addition to `SPECTRAL_DSN` which is mandatory.
 
-Please refer to our docs to view the extra environment variables needed for the integration.
+Please refer to our docs / source pages to view the extra environment variables needed for the integration.
 
 ##### SPECTRAL_DSN (mandatory)
 
 Your SpectralOps identifier, retrieved from your SpectralOps account.
-
-##### CHECK_POLICY (mandatory)
-
-`CHECK_POLICY` responsible for setting the minimum issue severity that should fail the check.
-The valid values for this field are:
-
-1. Fail on any issue
-2. Fail on warnings and above
-3. Fail on errors only
-4. Always pass
 
 ### global_tags
 
@@ -91,7 +81,7 @@ This variable holds a collection of tags grouped by key representing its target 
 
 ```tcl
 module "spectral_lambda_integration" {
-  source                        = "github.com/SpectralOps/spectral-terraform-lambda-integration?ref=v1.0.1"
+  source                        = "github.com/SpectralOps/spectral-terraform-lambda-integration?ref=v1.0.2"
 
   account_id                    = 111111111111
   aws_region                    = "us-east-1"
@@ -105,10 +95,8 @@ module "spectral_lambda_integration" {
 
   # Environment variables used by the integration
   env_vars = {
-    # Mandatory - Your spectral DSN retreived from SpectralOps
+    # Mandatory - Your spectral DSN retrieved from SpectralOps
     SPECTRAL_DSN       = ""
-    # Mandatory - Set which severity should fail the check
-    CHECK_POLICY       = ""
     # Additional env-vars should go here
   }
 
