@@ -8,13 +8,13 @@ Terraform configuration used to create the required AWS resources for integratin
 
 | Name      | Version |
 | ----------- | ----------- |
-| [terraform](https://www.terraform.io/downloads)      | ~> 1.2.0    |
+| [terraform](https://www.terraform.io/downloads)      | ~> 1.3.0    |
 
 ## Providers
 
 | Name      | Version |
 | ----------- | ----------- |
-| [aws](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)      | ~> 4.9    |
+| [aws](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)      | ~> 4.37.0    |
 
 ## Inputs
 
