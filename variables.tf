@@ -1,15 +1,3 @@
-# General variables
-
-variable "aws_region" {
-  type        = string
-  description = "The region in which to manage resources."
-}
-
-variable "account_id" {
-  type        = string
-  description = "AWS Account ID number of the account in which to manage resources."
-}
-
 variable "integration_type" {
   type        = string
   description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
