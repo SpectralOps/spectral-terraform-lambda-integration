@@ -1,3 +1,5 @@
+# General variables
+
 variable "integration_type" {
   type        = string
   description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
