@@ -1,8 +1,6 @@
 module "spectral_lambda_integration" {
   source = "github.com/SpectralOps/spectral-terraform-lambda-integration"
 
-  account_id       = 111111111111
-  aws_region       = "us-east-1"
   integration_type = "jira"
 
   env_vars = {

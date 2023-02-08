@@ -20,8 +20,6 @@ Terraform configuration used to create the required AWS resources for integratin
 
 | Name      | Description | Type | Default | Required |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| `account_id` | AWS Account ID number of the account in which to manage resources. | `number` | N/A | Yes |
-| `aws_region` | The region in which to manage resources.| `string` | N/A | Yes |
 | `environment` | The target environment name for deployment | `string` | `prod` | No |
 | `integration_type` | Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`, `jira` and `gitlab` | `string` | N/A | Yes |
 | [`env_vars`](#env_vars) | Extendable object contains all required environment variables required for the integration. | `map(string)` | N/A | No |
@@ -83,8 +81,6 @@ This variable holds a collection of tags grouped by key representing its target 
 module "spectral_lambda_integration" {
   source                        = "github.com/SpectralOps/spectral-terraform-lambda-integration?ref=v1.0.2"
 
-  account_id                    = 111111111111
-  aws_region                    = "us-east-1"
   environment                   = "prod"
   integration_type              = "terraform"
   lambda_enable_logs            = true
@@ -121,6 +117,15 @@ module "spectral_lambda_integration" {
       Resource = "api_gateway"
     }
   }
+}
+```
+
+Don't forget to configure your provider:
+```tcl
+provider "aws" {
+  allowed_account_ids = ["11111111111"]
+  region = "us-east-1"
+  profile = "example-profile"
 }
 ```
 
