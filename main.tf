@@ -7,7 +7,7 @@ module "lambda_function" {
   global_tags            = var.global_tags
   tags                   = var.tags
   environment            = var.environment
-  integration_type       = var.integration_type
+  integration_type       = var.terraform
   resource_name_pattern  = local.resource_name_pattern
   env_vars               = var.env_vars
   logs_retention_in_days = var.lambda_logs_retention_in_days
