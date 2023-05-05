@@ -22,7 +22,7 @@ module "api_gateway" {
   global_tags           = var.global_tags
   tags                  = var.tags
   environment           = var.environment
-  integration_type      = var.integration_type
+  integration_type      = var.terraform
   resource_name_pattern = local.resource_name_pattern
   lambda_function_arn   = module.lambda_function.lambda_function_arn
 }
