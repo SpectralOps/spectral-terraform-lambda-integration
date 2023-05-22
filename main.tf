@@ -1,5 +1,10 @@
 locals {
   resource_name_pattern = "spectral-${var.integration_type}-integration-${var.environment}"
+  gitlab_secrets = var.store_secret_in_secrets_manager && var.integration_type == "gitlab" ? [
+    module.secrets_manager.spectral_dsn_secret_arn,
+    module.secrets_manager.gitlab_token_secret_arn,
+    module.secrets_manager.gitlab_webhook_secret_arn,
+  ] : null
 }
 
 module "lambda_function" {
@@ -15,6 +20,7 @@ module "lambda_function" {
   timeout                = var.lambda_function_timeout
   memory_size            = var.lambda_function_memory_size
   publish                = var.lambda_publish
+  secrets_arns           = var.store_secret_in_secrets_manager ? coalesce(local.gitlab_secrets, []) : []
 }
 
 module "api_gateway" {
@@ -25,4 +31,9 @@ module "api_gateway" {
   integration_type      = var.integration_type
   resource_name_pattern = local.resource_name_pattern
   lambda_function_arn   = module.lambda_function.lambda_function_arn
+}
+
+module "secrets_manager" {
+  count  = var.store_secret_in_secrets_manager ? 1 : 0
+  source = "./modules/secrets_manager"
 }
