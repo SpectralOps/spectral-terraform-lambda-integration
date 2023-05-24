@@ -7,9 +7,9 @@ output "lambda_function_name" {
 }
 
 output "lambda_iam_role_arn" {
-  value = aws_iam_role.lambda_execution_role.arn
+  value = aws_iam_role.lambda_role.arn
 }
 
 output "lambda_iam_role_name" {
-  value = aws_iam_role.lambda_execution_role.name
+  value = aws_iam_role.lambda_role.name
 }
