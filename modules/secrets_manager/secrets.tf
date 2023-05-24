@@ -7,16 +7,16 @@ locals {
 }
 
 resource "aws_secretsmanager_secret" "gitlab_webhook_secret" {
-  count                   = var.integration_type == "gitlab" ? 1 : 0
-  name                    = "Spectral_GitlabBot_WebhookSecret"
+  count = var.integration_type == "gitlab" ? 1 : 0
+  name  = "Spectral_GitlabBot_WebhookSecret"
 }
 
 resource "aws_secretsmanager_secret" "gitlab_token" {
-  count                   = var.integration_type == "gitlab" ? 1 : 0
-  name                    = "Spectral_GitlabBot_GitlabToken"
+  count = var.integration_type == "gitlab" ? 1 : 0
+  name  = "Spectral_GitlabBot_GitlabToken"
 }
 
 resource "aws_secretsmanager_secret" "spectral_dsn" {
-  count                   = var.integration_type == "gitlab" ? 1 : 0
-  name                    = "Spectral_Dsn"
+  count = var.integration_type == "gitlab" ? 1 : 0
+  name  = "Spectral_Dsn"
 }
