@@ -72,6 +72,6 @@ variable "lambda_publish" {
 
 variable "store_secret_in_secrets_manager" {
   type        = bool
-  description = "Whether to store your secrets in secrets manager, default is true"
-  default     = true
+  description = "Whether to store your secrets in secrets manager, default is false"
+  default     = false
 }

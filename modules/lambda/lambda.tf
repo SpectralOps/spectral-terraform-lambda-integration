@@ -47,10 +47,15 @@ data "aws_iam_policy_document" "assume_role_policy" {
       identifiers = ["lambda.amazonaws.com"]
     }
   }
-  statement {
-    effect    = "Allow"
-    action    = "secretsmanager:GetSecretValue"
-    resources = var.secrets_arns
+  dynamic "secrets_statement" {
+    for_each = length(coalesce(var.secrets_arns, [])) > 0 ? [1] : []
+    content {
+      statement {
+        effect    = "Allow"
+        actions   = ["secretsmanager:GetSecretValue"]
+        resources = var.secrets_arns
+      }
+    }
   }
 }
 

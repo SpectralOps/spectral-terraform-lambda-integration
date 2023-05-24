@@ -33,3 +33,7 @@ output "lambda_iam_role_arn" {
 output "lambda_iam_role_name" {
   value = module.lambda_function.lambda_iam_role_name
 }
+
+output "secrets_arns" {
+  value = module.secrets_manager.secrets_arns
+}

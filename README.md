@@ -30,6 +30,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | `lambda_function_timeout` | Amount of time your Lambda Function has to run in seconds.  | `number` | 300 | No |
 | `lambda_function_memory_size` | Amount of memory in MB your Lambda Function can use at runtime. | `number` | 1024 | No |
 | `lambda_publish` | Whether to publish creation/change as new Lambda Function Version. | `bool` | `false` | No |
+| `store_secret_in_secrets_manager` | Whether to store secrets values on a vault (currently supporting AWS secrets manager). | `bool` | `false` | No |
 
 ### env_vars
 
@@ -117,15 +118,6 @@ module "spectral_lambda_integration" {
       Resource = "api_gateway"
     }
   }
-}
-```
-
-Don't forget to configure your provider:
-```tcl
-provider "aws" {
-  allowed_account_ids = ["11111111111"]
-  region = "us-east-1"
-  profile = "example-profile"
 }
 ```
 
