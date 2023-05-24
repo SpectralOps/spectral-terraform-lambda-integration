@@ -3,7 +3,7 @@ locals {
     aws_secretsmanager_secret.spectral_dsn[0].arn,
     aws_secretsmanager_secret.gitlab_token[0].arn,
     aws_secretsmanager_secret.gitlab_webhook_secret[0].arn
-  ] : null
+  ] : []
 }
 
 resource "aws_secretsmanager_secret" "gitlab_webhook_secret" {
