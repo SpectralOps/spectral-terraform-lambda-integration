@@ -151,3 +151,4 @@ module "spectral_lambda_integration" {
 7. `lambda_function_name` - The name of the lambda function.
 8. `lambda_iam_role_arn` - Amazon Resource Name (ARN) specifying the role.
 9. `lambda_iam_role_name` - Name of the role.
+10. `secrets_arns` - Arns of created secrets in secrets manager.
