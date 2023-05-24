@@ -15,7 +15,7 @@ module "lambda_function" {
   timeout                = var.lambda_function_timeout
   memory_size            = var.lambda_function_memory_size
   publish                = var.lambda_publish
-  secrets_arns           = var.store_secret_in_secrets_manager ? module.secrets_manager.secrets_arns : []
+  secrets_arns           = var.store_secret_in_secrets_manager ? module.secrets_manager[0].secrets_arns : []
 }
 
 module "api_gateway" {

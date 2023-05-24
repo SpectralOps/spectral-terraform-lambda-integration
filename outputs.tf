@@ -35,5 +35,5 @@ output "lambda_iam_role_name" {
 }
 
 output "secrets_arns" {
-  value = module.secrets_manager.secrets_arns
+  value = module.secrets_manager[*].secrets_arns
 }
