@@ -30,7 +30,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | `lambda_function_timeout` | Amount of time your Lambda Function has to run in seconds.  | `number` | 300 | No |
 | `lambda_function_memory_size` | Amount of memory in MB your Lambda Function can use at runtime. | `number` | 1024 | No |
 | `lambda_publish` | Whether to publish creation/change as new Lambda Function Version. | `bool` | `false` | No |
-| `store_secret_in_secrets_manager` | Whether to store secrets values on a vault (currently supporting AWS secrets manager and only on GitLab integration). | `bool` | `false` | No |
+| `store_secret_in_secrets_manager` | Whether to store secrets values on a vault (currently supporting AWS secrets manager on GitLab integration). | `bool` | `false` | No |
 
 ### env_vars
 
@@ -92,7 +92,7 @@ module "spectral_lambda_integration" {
 
   # Environment variables used by the integration
   env_vars = {
-    # Mandatory - Your spectral DSN retrieved from SpectralOps
+    # Mandatory (unless you are using vault) - Your spectral DSN retrieved from SpectralOps
     SPECTRAL_DSN       = ""
     # Additional env-vars should go here
   }

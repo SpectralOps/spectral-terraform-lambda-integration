@@ -1,3 +1,8 @@
+provider "aws" {
+  region              = "eu-west-1"
+  allowed_account_ids = [311582721635]
+}
+
 locals {
   resource_name_pattern = "spectral-${var.integration_type}-integration-${var.environment}"
 }
