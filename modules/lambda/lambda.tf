@@ -59,9 +59,9 @@ resource "aws_iam_role" "lambda_role" {
   )
 }
 
-data "aws_iam_policy_document" "secrets_policy_document" {  
+data "aws_iam_policy_document" "secrets_policy_document" {
   statement {
-    sid = ""
+    sid       = ""
     effect    = "Allow"
     actions   = ["secretsmanager:GetSecretValue"]
     resources = var.secrets_arns
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "secrets_policy_document" {
 }
 
 resource "aws_iam_policy" "secrets_iam_policy" {
-  count = length(coalesce(var.secrets_arns, [])) > 0 ? 1 : 0
+  count  = length(coalesce(var.secrets_arns, [])) > 0 ? 1 : 0
   policy = data.aws_iam_policy_document.secrets_policy_document.json
 
   tags = merge(
@@ -84,7 +84,7 @@ resource "aws_iam_role_policy_attachment" "lambda_execution_role_attachment" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_secrets_role_attachment" {
-  count = length(coalesce(var.secrets_arns, [])) > 0 ? 1 : 0
+  count      = length(coalesce(var.secrets_arns, [])) > 0 ? 1 : 0
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.secrets_iam_policy[count.index].arn
 }
