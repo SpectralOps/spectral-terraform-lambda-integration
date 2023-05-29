@@ -16,4 +16,4 @@ jobs:
         uses: spectralops/spectral-github-action@v3
         with:
           spectral-dsn: ${{ env.SPECTRAL_DSN }}
-          spectral-args: scan --ok --include-tags base,iac
+          spectral-args: scan --unpack --ok --engines secrets,iac
