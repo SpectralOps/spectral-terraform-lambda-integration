@@ -6,7 +6,7 @@ locals {
 
 resource "aws_lambda_function" "spectral_scanner_lambda" {
   runtime       = local.runtime
-  role          = aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.lambda_execution_role.arn
   function_name = var.resource_name_pattern
   filename      = local.lambda_source_code_zip_path
   handler       = local.lambda_handler
@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
-resource "aws_iam_role" "lambda_role" {
+resource "aws_iam_role" "lambda_execution_role" {
   name               = var.resource_name_pattern
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "secrets_policy_document" {
 }
 
 resource "aws_iam_policy" "secrets_iam_policy" {
-  count  = length(coalesce(var.secrets_arns, [])) > 0 ? 1 : 0
+  count  = var.store_secret_in_secrets_manager ? 1 : 0
   policy = data.aws_iam_policy_document.secrets_policy_document.json
 
   tags = merge(
@@ -79,12 +79,12 @@ resource "aws_iam_policy" "secrets_iam_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution_role_attachment" {
-  role       = aws_iam_role.lambda_role.name
+  role       = aws_iam_role.lambda_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_secrets_role_attachment" {
-  count      = length(coalesce(var.secrets_arns, [])) > 0 ? 1 : 0
-  role       = aws_iam_role.lambda_role.name
+  count      = var.store_secret_in_secrets_manager ? 1 : 0
+  role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.secrets_iam_policy[count.index].arn
 }

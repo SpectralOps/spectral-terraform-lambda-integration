@@ -70,3 +70,8 @@ variable "secrets_arns" {
   type        = list(string)
   default     = []
 }
+
+variable "store_secret_in_secrets_manager" {
+  description = "Whether to store your secrets in secrets manager, default is false"
+  type        = bool
+}
