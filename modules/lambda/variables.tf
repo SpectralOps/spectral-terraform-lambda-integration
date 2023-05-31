@@ -64,3 +64,14 @@ variable "publish" {
   description = "Whether to publish creation/change as new Lambda Function Version."
   default     = false
 }
+
+variable "secrets_arns" {
+  description = "List of secrets associated with the lambda"
+  type        = list(string)
+  default     = []
+}
+
+variable "store_secret_in_secrets_manager" {
+  description = "Whether to store your secrets in secrets manager, default is false"
+  type        = bool
+}

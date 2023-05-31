@@ -30,6 +30,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | `lambda_function_timeout` | Amount of time your Lambda Function has to run in seconds.  | `number` | 300 | No |
 | `lambda_function_memory_size` | Amount of memory in MB your Lambda Function can use at runtime. | `number` | 1024 | No |
 | `lambda_publish` | Whether to publish creation/change as new Lambda Function Version. | `bool` | `false` | No |
+| `store_secret_in_secrets_manager` | Whether to store secrets values on a vault (currently supporting AWS secrets manager on GitLab integration). | `bool` | `false` | No |
 
 ### env_vars
 
@@ -79,7 +80,7 @@ This variable holds a collection of tags grouped by key representing its target 
 
 ```tcl
 module "spectral_lambda_integration" {
-  source                        = "github.com/SpectralOps/spectral-terraform-lambda-integration?ref=v1.0.2"
+  source                        = "github.com/SpectralOps/spectral-terraform-lambda-integration"
 
   environment                   = "prod"
   integration_type              = "terraform"
@@ -91,7 +92,7 @@ module "spectral_lambda_integration" {
 
   # Environment variables used by the integration
   env_vars = {
-    # Mandatory - Your spectral DSN retrieved from SpectralOps
+    # Mandatory (unless you are using vault) - Your spectral DSN retrieved from SpectralOps
     SPECTRAL_DSN       = ""
     # Additional env-vars should go here
   }
@@ -117,15 +118,6 @@ module "spectral_lambda_integration" {
       Resource = "api_gateway"
     }
   }
-}
-```
-
-Don't forget to configure your provider:
-```tcl
-provider "aws" {
-  allowed_account_ids = ["11111111111"]
-  region = "us-east-1"
-  profile = "example-profile"
 }
 ```
 
@@ -159,3 +151,4 @@ provider "aws" {
 7. `lambda_function_name` - The name of the lambda function.
 8. `lambda_iam_role_arn` - Amazon Resource Name (ARN) specifying the role.
 9. `lambda_iam_role_name` - Name of the role.
+10. `secrets_arns` - Arns of created secrets in secrets manager.

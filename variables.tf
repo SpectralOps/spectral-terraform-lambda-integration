@@ -69,3 +69,9 @@ variable "lambda_publish" {
   description = "Whether to publish creation/change as new Lambda Function Version."
   default     = false
 }
+
+variable "store_secret_in_secrets_manager" {
+  type        = bool
+  description = "Whether to store your secrets in secrets manager, default is false"
+  default     = false
+}
