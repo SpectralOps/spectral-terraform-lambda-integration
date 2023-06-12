@@ -36,7 +36,7 @@ data "aws_iam_policy_document" "lambda_invoke_policy_document" {
     sid       = ""
     effect    = "Allow"
     actions   = ["lambda:InvokeFunction", "lambda:InvokeAsync"]
-    resources = "*"
+    resources = ["*"]
   }
 }
 
@@ -65,13 +65,13 @@ resource "aws_iam_role_policy_attachment" "lambda_execution_role" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_secrets_role_attachment" {
+resource "aws_iam_role_policy_attachment" "lambda_secrets_policy_attachment" {
   count      = var.store_secret_in_secrets_manager ? 1 : 0
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.secrets_iam_policy[count.index].arn
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_secrets_role_attachment" {
+resource "aws_iam_role_policy_attachment" "lambda_invoke_policy_attachment" {
   count      = var.multiple_lambda_integration ? 1 : 0
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.lambda_invoke_iam_policy[count.index].arn

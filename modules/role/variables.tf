@@ -32,11 +32,6 @@ variable "resource_name_pattern" {
   description = "A common resource name created by pattern."
 }
 
-variable "single_lambda_integration" {
-  type        = bool
-  description = "Is current integration structure contains a single lambda"
-}
-
 variable "multiple_lambda_integration" {
   type        = bool
   description = "Is current integration structure contains two lambdas"

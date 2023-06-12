@@ -85,3 +85,9 @@ variable "role_arn" {
   type        = string
   description = "The lambda source code filename"
 }
+
+variable "lambda_handler" {
+  type        = string
+  description = "The handler of the handler"
+  default     = "handler.app"
+}
