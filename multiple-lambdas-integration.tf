@@ -39,3 +39,28 @@ module "backend_lambda_function" {
   lambda_source_code_filename     = "backend.zip"
   role_arn                        = module.lambda_role.lambda_role_arn
 }
+
+data "aws_iam_policy_document" "lambda_invoke_policy_document" {
+  statement {
+    sid       = ""
+    effect    = "Allow"
+    actions   = ["lambda:InvokeFunction", "lambda:InvokeAsync"]
+    resources = [module.backend_lambda_function.lambda_function_arn]
+  }
+}
+
+resource "aws_iam_policy" "lambda_invoke_iam_policy" {
+  count  = var.multiple_lambda_integration ? 1 : 0
+  policy = data.aws_iam_policy_document.lambda_invoke_policy_document.json
+
+  tags = merge(
+    var.global_tags,
+    lookup(var.tags, "iam", {}),
+  )
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_invoke_policy_attachment" {
+  count      = var.multiple_lambda_integration ? 1 : 0
+  role       = module.lambda_role.lambda_role_name
+  policy_arn = aws_iam_policy.lambda_invoke_iam_policy[count.index].arn
+}

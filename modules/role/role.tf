@@ -31,28 +31,9 @@ data "aws_iam_policy_document" "secrets_policy_document" {
   }
 }
 
-data "aws_iam_policy_document" "lambda_invoke_policy_document" {
-  statement {
-    sid       = ""
-    effect    = "Allow"
-    actions   = ["lambda:InvokeFunction", "lambda:InvokeAsync"]
-    resources = ["*"]
-  }
-}
-
 resource "aws_iam_policy" "secrets_iam_policy" {
   count  = var.store_secret_in_secrets_manager ? 1 : 0
   policy = data.aws_iam_policy_document.secrets_policy_document.json
-
-  tags = merge(
-    var.global_tags,
-    lookup(var.tags, "iam", {}),
-  )
-}
-
-resource "aws_iam_policy" "lambda_invoke_iam_policy" {
-  count  = var.multiple_lambda_integration ? 1 : 0
-  policy = data.aws_iam_policy_document.lambda_invoke_policy_document.json
 
   tags = merge(
     var.global_tags,
@@ -69,10 +50,4 @@ resource "aws_iam_role_policy_attachment" "lambda_secrets_policy_attachment" {
   count      = var.store_secret_in_secrets_manager ? 1 : 0
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.secrets_iam_policy[count.index].arn
-}
-
-resource "aws_iam_role_policy_attachment" "lambda_invoke_policy_attachment" {
-  count      = var.multiple_lambda_integration ? 1 : 0
-  role       = aws_iam_role.lambda_execution_role.name
-  policy_arn = aws_iam_policy.lambda_invoke_iam_policy[count.index].arn
 }
