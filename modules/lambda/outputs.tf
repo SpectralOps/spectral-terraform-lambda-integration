@@ -1,3 +1,7 @@
+output "lambda_arn" {
+  value = aws_lambda_function.spectral_scanner_lambda.arn
+}
+
 output "lambda_function_arn" {
   value = aws_lambda_function.spectral_scanner_lambda.invoke_arn
 }

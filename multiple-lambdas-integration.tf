@@ -45,12 +45,12 @@ data "aws_iam_policy_document" "lambda_invoke_policy_document" {
     sid       = ""
     effect    = "Allow"
     actions   = ["lambda:InvokeFunction", "lambda:InvokeAsync"]
-    resources = [module.backend_lambda_function.lambda_function_arn]
+    resources = [module.backend_lambda_function[0].lambda_arn]
   }
 }
 
 resource "aws_iam_policy" "lambda_invoke_iam_policy" {
-  count  = var.multiple_lambda_integration ? 1 : 0
+  count  = local.multiple_lambda_integration ? 1 : 0
   policy = data.aws_iam_policy_document.lambda_invoke_policy_document.json
 
   tags = merge(
@@ -60,7 +60,7 @@ resource "aws_iam_policy" "lambda_invoke_iam_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_invoke_policy_attachment" {
-  count      = var.multiple_lambda_integration ? 1 : 0
+  count      = local.multiple_lambda_integration ? 1 : 0
   role       = module.lambda_role.lambda_role_name
   policy_arn = aws_iam_policy.lambda_invoke_iam_policy[count.index].arn
 }
