@@ -45,7 +45,7 @@ data "aws_iam_policy_document" "lambda_invoke_policy_document" {
     sid       = ""
     effect    = "Allow"
     actions   = ["lambda:InvokeFunction", "lambda:InvokeAsync"]
-    resources = [module.backend_lambda_function[0].lambda_arn]
+    resources = local.multiple_lambda_integration ? [module.backend_lambda_function[0].lambda_arn] : []
   }
 }
 
