@@ -1,8 +1,5 @@
-locals {
-  resource_name_pattern = "spectral-${var.integration_type}-integration-${var.environment}"
-}
-
 module "lambda_function" {
+  count                           = local.single_lambda_integration ? 1 : 0
   source                          = "./modules/lambda"
   global_tags                     = var.global_tags
   tags                            = var.tags
@@ -17,20 +14,6 @@ module "lambda_function" {
   publish                         = var.lambda_publish
   secrets_arns                    = var.store_secret_in_secrets_manager ? module.secrets_manager[0].secrets_arns : []
   store_secret_in_secrets_manager = var.store_secret_in_secrets_manager
-}
-
-module "api_gateway" {
-  source                = "./modules/api_gateway"
-  global_tags           = var.global_tags
-  tags                  = var.tags
-  environment           = var.environment
-  integration_type      = var.integration_type
-  resource_name_pattern = local.resource_name_pattern
-  lambda_function_arn   = module.lambda_function.lambda_function_arn
-}
-
-module "secrets_manager" {
-  count            = var.store_secret_in_secrets_manager ? 1 : 0
-  integration_type = var.integration_type
-  source           = "./modules/secrets_manager"
+  lambda_source_code_filename     = "app.zip"
+  role_arn                        = module.lambda_role.lambda_role_arn
 }
