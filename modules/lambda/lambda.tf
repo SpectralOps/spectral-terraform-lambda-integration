@@ -1,5 +1,5 @@
 locals {
-  runtime                     = "nodejs14.x"
+  runtime                     = "nodejs20.x"
   lambda_source_code_zip_path = "${path.module}/source_code/${var.integration_type}/${var.lambda_source_code_filename}"
 }
 
