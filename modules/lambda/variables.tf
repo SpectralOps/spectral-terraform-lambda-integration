@@ -81,6 +81,11 @@ variable "lambda_source_code_filename" {
   description = "The lambda source code filename"
 }
 
+variable "lambda_source_code_path" {
+  type        = string
+  description = "The lambda source code path"
+}
+
 variable "role_arn" {
   type        = string
   description = "The lambda source code filename"

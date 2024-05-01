@@ -10,6 +10,21 @@ variable "integration_type" {
   }
 }
 
+variable "lambda_source_code_path" {
+  type        = string
+  description = "Path to the lambda source code zip file"
+}
+
+variable "frontend_lambda_source_code_path" {
+  type        = string
+  description = "Path to the lambda source code zip file of the frontend lambda"
+}
+
+variable "backend_lambda_source_code_path" {
+  type        = string
+  description = "Path to the lambda source code zip file of the backend lambda"
+}
+
 variable "environment" {
   type        = string
   description = "The target environment name for deployment."
@@ -79,4 +94,9 @@ variable "store_secret_in_secrets_manager" {
   type        = bool
   description = "Whether to store your secrets in secrets manager, default is false"
   default     = false
+}
+
+variable "resource_name_common_part" {
+  type        = string
+  description = "A common part for all resources created under the stack"
 }

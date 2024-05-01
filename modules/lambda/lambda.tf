@@ -1,6 +1,6 @@
 locals {
-  runtime                     = "nodejs14.x"
-  lambda_source_code_zip_path = "${path.module}/source_code/${var.integration_type}/${var.lambda_source_code_filename}"
+  runtime                     = "nodejs20.x"
+  lambda_source_code_zip_path = "${coalesce(var.lambda_source_code_path, "${path.module}/source_code/${var.integration_type}")}/${var.lambda_source_code_filename}"
 }
 
 resource "aws_lambda_function" "spectral_scanner_lambda" {

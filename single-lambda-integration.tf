@@ -15,5 +15,6 @@ module "lambda_function" {
   secrets_arns                    = var.store_secret_in_secrets_manager ? module.secrets_manager[0].secrets_arns : []
   store_secret_in_secrets_manager = var.store_secret_in_secrets_manager
   lambda_source_code_filename     = "app.zip"
+  lambda_source_code_path         = var.lambda_source_code_path
   role_arn                        = module.lambda_role.lambda_role_arn
 }
