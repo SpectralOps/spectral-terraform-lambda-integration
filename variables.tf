@@ -13,16 +13,19 @@ variable "integration_type" {
 variable "lambda_source_code_path" {
   type        = string
   description = "Path to the lambda source code zip file"
+  default     = null
 }
 
 variable "frontend_lambda_source_code_path" {
   type        = string
   description = "Path to the lambda source code zip file of the frontend lambda"
+  default     = null
 }
 
 variable "backend_lambda_source_code_path" {
   type        = string
   description = "Path to the lambda source code zip file of the backend lambda"
+  default     = null
 }
 
 variable "environment" {
@@ -99,4 +102,5 @@ variable "store_secret_in_secrets_manager" {
 variable "resource_name_common_part" {
   type        = string
   description = "A common part for all resources created under the stack"
+  default     = null
 }
