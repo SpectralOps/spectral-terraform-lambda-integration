@@ -5,7 +5,7 @@ variable "integration_type" {
   description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
 
   validation {
-    condition     = contains(["gitlab", "jira", "terraform"], var.integration_type)
+    condition     = contains(["github", "gitlab", "jira", "terraform"], var.integration_type)
     error_message = "Integration type is invalid"
   }
 }
