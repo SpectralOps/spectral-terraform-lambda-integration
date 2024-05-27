@@ -71,11 +71,6 @@ variable "secrets_arns" {
   default     = []
 }
 
-variable "store_secret_in_secrets_manager" {
-  description = "Whether to store your secrets in secrets manager, default is false"
-  type        = bool
-}
-
 variable "lambda_source_code_filename" {
   type        = string
   description = "The lambda source code filename"

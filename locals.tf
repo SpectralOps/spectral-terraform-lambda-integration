@@ -5,4 +5,8 @@ locals {
   api_triggered_function_arn  = local.single_lambda_integration ? module.lambda_function[0].lambda_function_arn : module.frontend_lambda_function[0].lambda_function_arn
   frontend_lambda_handler     = contains(["github"], var.integration_type) ? "index.handler" : "frontend.app"
   backend_lambda_handler      = contains(["github"], var.integration_type) ? "index.handler" : "backend.app"
+  default_secrets_names = {
+    "github" = coalesce(var.secrets_names, ["Spectral_GithubBot_GithubToken", "Spectral_GithubBot_WebhookSecret"]),
+    "gitlab" = coalesce(var.secrets_names, ["Spectral_GitlabBot_GitlabToken", "Spectral_GitlabBot_WebhookSecret"])
+  }
 }

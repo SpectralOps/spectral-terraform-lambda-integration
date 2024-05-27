@@ -19,6 +19,7 @@ module "secrets_manager" {
   count            = var.store_secret_in_secrets_manager ? 1 : 0
   integration_type = var.integration_type
   source           = "./modules/secrets_manager"
+  secrets_names    = local.default_secrets_names[var.integration_type]
 }
 
 module "lambda_role" {

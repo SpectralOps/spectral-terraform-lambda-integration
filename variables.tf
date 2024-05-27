@@ -104,3 +104,9 @@ variable "resource_name_common_part" {
   description = "A common part for all resources created under the stack"
   default     = null
 }
+
+variable "secrets_names" {
+  description = "Names of secrets to create"
+  type        = list(string)
+  default     = null
+}
