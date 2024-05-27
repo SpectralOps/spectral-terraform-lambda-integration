@@ -35,3 +35,8 @@ variable "integration_type" {
   type        = string
   description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
 }
+
+variable "function_name" {
+  type        = string
+  description = "The name of the function the API would trigger upon request"
+}

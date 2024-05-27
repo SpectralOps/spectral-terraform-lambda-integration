@@ -10,7 +10,8 @@ module "api_gateway" {
   tags                  = var.tags
   environment           = var.environment
   integration_type      = var.integration_type
-  resource_name_pattern = local.single_lambda_integration ? local.resource_name_pattern : "${local.resource_name_pattern}-frontend"
+  resource_name_pattern = local.resource_name_pattern
+  function_name         = local.single_lambda_integration ? local.resource_name_pattern : "${local.resource_name_pattern}-frontend"
   lambda_function_arn   = local.api_triggered_function_arn
 }
 
