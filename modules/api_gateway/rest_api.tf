@@ -31,6 +31,7 @@ resource "aws_api_gateway_integration" "api_proxy_integration" {
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
   uri                     = var.lambda_function_arn
+  timeout_milliseconds    = var.gateway_api_integration_timeout_milliseconds
 }
 
 resource "aws_api_gateway_method_response" "response_200" {

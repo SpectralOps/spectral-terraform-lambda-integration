@@ -9,4 +9,6 @@ locals {
     "github" = coalesce(var.secrets_names, ["Spectral_GithubBot_GithubToken", "Spectral_GithubBot_WebhookSecret"]),
     "gitlab" = coalesce(var.secrets_names, ["Spectral_GitlabBot_GitlabToken", "Spectral_GitlabBot_WebhookSecret"])
   }
+  # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
+  function_name = local.single_lambda_integration ? local.resource_name_pattern : "${local.resource_name_pattern}-frontend"
 }

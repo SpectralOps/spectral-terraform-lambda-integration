@@ -27,9 +27,9 @@ variable "tags" {
   }
 }
 
-variable "resource_name_pattern" {
+variable "role_name" {
   type        = string
-  description = "A common resource name created by pattern."
+  description = "The name of the role"
 }
 
 variable "multiple_lambda_integration" {

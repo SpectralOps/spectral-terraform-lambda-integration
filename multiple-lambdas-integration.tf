@@ -5,6 +5,7 @@ module "frontend_lambda_function" {
   tags                        = var.tags
   environment                 = var.environment
   integration_type            = var.integration_type
+  # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
   resource_name_pattern       = "${local.resource_name_pattern}-frontend"
   env_vars                    = var.env_vars
   logs_retention_in_days      = var.lambda_logs_retention_in_days
@@ -26,6 +27,7 @@ module "backend_lambda_function" {
   tags                        = var.tags
   environment                 = var.environment
   integration_type            = var.integration_type
+  # Please do not change or replace the 'backend' suffix since there a logic in the bot based in it
   resource_name_pattern       = "${local.resource_name_pattern}-backend"
   env_vars                    = var.env_vars
   logs_retention_in_days      = var.lambda_logs_retention_in_days

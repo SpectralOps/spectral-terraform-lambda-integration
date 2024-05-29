@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 }
 
 resource "aws_iam_role" "lambda_execution_role" {
-  name               = var.resource_name_pattern
+  name               = var.role_name
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 
   tags = merge(

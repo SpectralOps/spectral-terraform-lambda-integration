@@ -1,8 +1,8 @@
 module "spectral_lambda_integration" {
   source = "github.com/SpectralOps/spectral-terraform-lambda-integration"
 
-  integration_type = "github"
-  lambda_enable_logs               = true
+  integration_type   = "github"
+  lambda_enable_logs = true
 
   # Use this attributes to deploy specific version of the bot
   frontend_lambda_source_code_path = "./source-code/github/github-frontend.zip"

@@ -110,3 +110,9 @@ variable "secrets_names" {
   type        = list(string)
   default     = null
 }
+
+variable "gateway_api_integration_timeout_milliseconds" {
+  description = "Timeout for the API Gateway to wait for lambda response"
+  type        = number
+  default     = 29000
+}
