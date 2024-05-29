@@ -13,7 +13,6 @@ module "spectral_lambda_integration" {
     SPECTRAL_DSN          = "MySpectralDSN"
     CHECK_POLICY          = "Fail on any issue" # (Fail on any issue / Fail on warnings and above / Fail on errors only / Always Pass)
     GITHUB_APP_ID         = "MyGitHubAppId"
-    GITLAB_TOKEN          = "MyGitHubToken"
     GITHUB_WEBHOOK_SECRET = "MyGitHubWebhookSecret"
     GITHUB_PRIVATE_KEY    = "MyGitHubPrivateKey"
     # Optional environment variables
