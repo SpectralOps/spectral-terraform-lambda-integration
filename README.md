@@ -21,7 +21,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | Name      | Description | Type | Default | Required |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | `environment` | The target environment name for deployment | `string` | `prod` | No |
-| `integration_type` | Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`, `jira` and `gitlab` | `string` | N/A | Yes |
+| `integration_type` | Spectral integration type (A unique phrase describing the integration) - Available values: `github`, `terraform`, `jira` and `gitlab` | `string` | N/A | Yes |
 | [`env_vars`](#env_vars) | Extendable object contains all required environment variables required for the integration. | `map(string)` | N/A | No |
 | [`global_tags`](#global_tags) | Tags to be applied on every newly created resource. | `map(string)` | ```{ BusinessUnit = "Spectral" }``` | No |
 | [`tags`](#tags) | Tags to be applied on concrete resources  | `map(map(string))` | ```{ iam = { } lambda = { } api_gateway = { } }``` | No |
@@ -30,7 +30,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | `lambda_function_timeout` | Amount of time your Lambda Function has to run in seconds.  | `number` | 300 | No |
 | `lambda_function_memory_size` | Amount of memory in MB your Lambda Function can use at runtime. | `number` | 1024 | No |
 | `lambda_publish` | Whether to publish creation/change as new Lambda Function Version. | `bool` | `false` | No |
-| `store_secret_in_secrets_manager` | Whether to store secrets values on a vault (currently supporting AWS secrets manager on GitLab integration). | `bool` | `false` | No |
+| `store_secret_in_secrets_manager` | Whether to store secrets values on a vault (currently supporting AWS secrets manager on GitHub / GitLab integration). | `bool` | `false` | No |
 
 ### env_vars
 
