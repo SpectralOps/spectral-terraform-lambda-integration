@@ -6,7 +6,7 @@ locals {
   frontend_lambda_handler     = contains(["github"], var.integration_type) ? "index.handler" : "frontend.app"
   backend_lambda_handler      = contains(["github"], var.integration_type) ? "index.handler" : "backend.app"
   default_secrets_names = {
-    "github" = coalesce(var.secrets_names, ["Spectral_GithubBot_GithubToken", "Spectral_GithubBot_WebhookSecret"]),
+    "github" = coalesce(var.secrets_names, ["Spectral_GithubBot_PrivateKey", "Spectral_GithubBot_WebhookSecret"]),
     "gitlab" = coalesce(var.secrets_names, ["Spectral_GitlabBot_GitlabToken", "Spectral_GitlabBot_WebhookSecret"])
   }
   # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
