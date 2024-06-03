@@ -5,10 +5,6 @@ locals {
   )
 }
 
-resource "aws_secretsmanager_secret" "spectral_dsn" {
-  name = "Spectral_Dsn"
-}
-
 resource "aws_secretsmanager_secret" "general_secret" {
   count = length(var.secrets_names)
   name  = var.secrets_names[count.index]

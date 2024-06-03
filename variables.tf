@@ -97,6 +97,11 @@ variable "store_secret_in_secrets_manager" {
   type        = bool
   description = "Whether to store your secrets in secrets manager, default is false"
   default     = false
+
+  validation {
+    condition     = contains(["github", "gitlab"], var.integration_type)
+    error_message = "Integration type is invalid"
+  }
 }
 
 variable "resource_name_common_part" {
