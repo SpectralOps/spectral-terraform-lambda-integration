@@ -24,7 +24,7 @@ module "secrets_manager" {
 
 module "lambda_role" {
   source                          = "./modules/role"
-  role_name                       = local.api_triggered_function_name
+  role_name                       = "${local.resource_name_pattern}-role"
   store_secret_in_secrets_manager = var.store_secret_in_secrets_manager
   secrets_arns                    = var.store_secret_in_secrets_manager ? module.secrets_manager[0].secrets_arns : []
   tags                            = var.tags
