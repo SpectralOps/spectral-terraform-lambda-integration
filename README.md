@@ -55,14 +55,11 @@ Terraform configuration used to create the required AWS resources for integratin
 
 ### env_vars
 
-In some integrations, Spectral requires some extra environment variables besides the default ones.
-Those extra variables should be added to the `env_vars` map in addition to `SPECTRAL_DSN` which is mandatory.
+In some integrations, Spectral requires some environment variables besides the default ones.
+Those variables should be added to the `env_vars`.
 
-Please refer to our docs / source pages to view the extra environment variables needed for the integration.
+Please refer to our [docs](https://guides.spectralops.io/docs/welcome-to-checkpoint-cloudguard-guides) / source pages to view the extra environment variables needed for the integration.
 
-##### SPECTRAL_DSN (mandatory)
-
-Your SpectralOps identifier, retrieved from your SpectralOps account.
 
 ### global_tags
 
