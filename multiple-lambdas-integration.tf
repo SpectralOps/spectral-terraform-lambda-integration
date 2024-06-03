@@ -6,7 +6,7 @@ module "frontend_lambda_function" {
   environment      = var.environment
   integration_type = var.integration_type
   # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
-  resource_name_pattern       = local.api_integrated_function_name
+  resource_name_pattern       = local.api_triggered_function_name
   env_vars                    = var.env_vars
   logs_retention_in_days      = var.lambda_logs_retention_in_days
   should_write_logs           = var.lambda_enable_logs

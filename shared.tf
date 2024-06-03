@@ -11,7 +11,7 @@ module "api_gateway" {
   environment           = var.environment
   integration_type      = var.integration_type
   resource_name_pattern = local.resource_name_pattern
-  function_name         = local.function_name
+  function_name         = local.api_triggered_function_name
   lambda_function_arn   = local.api_triggered_function_arn
 }
 
@@ -24,7 +24,7 @@ module "secrets_manager" {
 
 module "lambda_role" {
   source                          = "./modules/role"
-  role_name                       = local.function_name
+  role_name                       = local.api_triggered_function_name
   store_secret_in_secrets_manager = var.store_secret_in_secrets_manager
   secrets_arns                    = var.store_secret_in_secrets_manager ? module.secrets_manager[0].secrets_arns : []
   tags                            = var.tags

@@ -1,8 +1,5 @@
 locals {
-  secrets_arns = concat(
-    [for secret in aws_secretsmanager_secret.general_secret : secret.arn],
-    [aws_secretsmanager_secret.spectral_dsn.arn]
-  )
+  secrets_arns = [for secret in aws_secretsmanager_secret.general_secret : secret.arn]
 }
 
 resource "aws_secretsmanager_secret" "general_secret" {
