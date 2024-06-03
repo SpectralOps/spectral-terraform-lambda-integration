@@ -44,7 +44,7 @@ variable "tags" {
 
 variable "integration_type" {
   type        = string
-  description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
+  description = "Spectral integration type (A unique phrase describing the integration) - Available values: `github`, `terraform`, `jira` and `gitlab`"
 }
 
 variable "timeout" {
