@@ -175,4 +175,5 @@ module "spectral_lambda_integration" {
 
 ## Support
 
-For GitHub deployment - only bot version 2.x is supported
+For GitHub deployment - only bot version 2.x is supported.
+The default GitHub bot version that this module deploys is 2.0.4, if you wish to use other versions please set local paths to the relevant ZIP files.
