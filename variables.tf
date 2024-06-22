@@ -60,6 +60,7 @@ variable "env_vars" {
   default = {
     SPECTRAL_DSN = ""
     CHECK_POLICY = "Fail on errors only"
+    HOME         = "/tmp"
   }
 }
 
