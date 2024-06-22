@@ -27,6 +27,5 @@ module "spectral_lambda_integration" {
     SHOULD_SKIP_INGEST                 = false
     STRICT_MODE                        = false
     SPECTRAL_TAGS                      = "iac,base,audit"
-    HOME                               = "/tmp"
   }
 }

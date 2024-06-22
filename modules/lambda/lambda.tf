@@ -19,7 +19,7 @@ resource "aws_lambda_function" "spectral_scanner_lambda" {
   )
 
   environment {
-    variables = var.env_vars
+    variables = local.env_vars
   }
 }
 

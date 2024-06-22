@@ -7,7 +7,7 @@ module "frontend_lambda_function" {
   integration_type = var.integration_type
   # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
   resource_name_pattern       = local.api_triggered_function_name
-  env_vars                    = var.env_vars
+  env_vars                    = local.env_vars
   logs_retention_in_days      = var.lambda_logs_retention_in_days
   should_write_logs           = var.lambda_enable_logs
   lambda_handler              = local.frontend_lambda_handler
@@ -29,7 +29,7 @@ module "backend_lambda_function" {
   integration_type = var.integration_type
   # Please do not change or replace the 'backend' suffix since there a logic in the bot based in it
   resource_name_pattern       = "${local.resource_name_pattern}-backend"
-  env_vars                    = var.env_vars
+  env_vars                    = local.env_vars
   logs_retention_in_days      = var.lambda_logs_retention_in_days
   should_write_logs           = var.lambda_enable_logs
   lambda_handler              = local.backend_lambda_handler
