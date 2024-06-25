@@ -31,6 +31,7 @@ resource "aws_api_gateway_integration" "api_proxy_integration" {
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
   uri                     = var.lambda_function_arn
+  timeout_milliseconds    = var.gateway_api_integration_timeout_milliseconds
 }
 
 resource "aws_api_gateway_method_response" "response_200" {
@@ -43,7 +44,7 @@ resource "aws_api_gateway_method_response" "response_200" {
 resource "aws_lambda_permission" "lambda_permission" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = var.resource_name_pattern
+  function_name = var.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = local.rest_api_execution_arn
 }

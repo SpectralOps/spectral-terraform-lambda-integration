@@ -44,7 +44,7 @@ variable "tags" {
 
 variable "integration_type" {
   type        = string
-  description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
+  description = "Spectral integration type (A unique phrase describing the integration) - Available values: `github`, `terraform`, `jira` and `gitlab`"
 }
 
 variable "timeout" {
@@ -71,14 +71,14 @@ variable "secrets_arns" {
   default     = []
 }
 
-variable "store_secret_in_secrets_manager" {
-  description = "Whether to store your secrets in secrets manager, default is false"
-  type        = bool
-}
-
 variable "lambda_source_code_filename" {
   type        = string
   description = "The lambda source code filename"
+}
+
+variable "lambda_source_code_path" {
+  type        = string
+  description = "The lambda source code path"
 }
 
 variable "role_arn" {

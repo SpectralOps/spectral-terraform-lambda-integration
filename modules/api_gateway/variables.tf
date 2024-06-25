@@ -33,5 +33,16 @@ variable "tags" {
 
 variable "integration_type" {
   type        = string
-  description = "Spectral integration type (A unique phrase describing the integration) - Available values: `terraform`."
+  description = "Spectral integration type (A unique phrase describing the integration) - Available values: `github`, `terraform`, `jira` and `gitlab`"
+}
+
+variable "function_name" {
+  type        = string
+  description = "The name of the function the API would trigger upon request"
+}
+
+variable "gateway_api_integration_timeout_milliseconds" {
+  description = "Timeout for the API Gateway to wait for lambda response"
+  type        = number
+  default     = 29000
 }
