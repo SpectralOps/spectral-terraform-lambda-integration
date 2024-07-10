@@ -28,7 +28,7 @@ resource "aws_iam_role" "lambda_execution_role" {
 }
 
 data "aws_iam_policy_document" "s3_policy_document" {
-  count  = local.should_create_s3_policy ? 1 : 0
+  count = local.should_create_s3_policy ? 1 : 0
   statement {
     sid       = ""
     effect    = "Allow"
