@@ -30,4 +30,5 @@ module "lambda_role" {
   tags                            = var.tags
   global_tags                     = var.global_tags
   multiple_lambda_integration     = local.multiple_lambda_integration
+  blacklist_object_arn            = local.blacklist_file_arn
 }
