@@ -1,5 +1,5 @@
 locals {
-  should_create_s3_policy = var.blacklist_object_arn != null && var.blacklist_object_arn != "" ? true : false
+  should_create_s3_policy = var.blacklist_object_arn != null && var.blacklist_object_arn != "" ? 1 : 0
 }
 
 
@@ -28,7 +28,7 @@ resource "aws_iam_role" "lambda_execution_role" {
 }
 
 data "aws_iam_policy_document" "s3_policy_document" {
-  count = local.should_create_s3_policy ? 1 : 0
+  count = local.should_create_s3_policy
   statement {
     sid       = ""
     effect    = "Allow"
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "s3_policy_document" {
 }
 
 resource "aws_iam_policy" "s3_iam_policy" {
-  count  = local.should_create_s3_policy ? 1 : 0
+  count  = local.should_create_s3_policy
   policy = data.aws_iam_policy_document.s3_policy_document[count.index].json
 
   tags = merge(
@@ -48,7 +48,7 @@ resource "aws_iam_policy" "s3_iam_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
-  count      = local.should_create_s3_policy ? 1 : 0
+  count      = local.should_create_s3_policy
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.s3_iam_policy[count.index].arn
 }
