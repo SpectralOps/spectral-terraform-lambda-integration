@@ -1,5 +1,5 @@
 locals {
-  should_create_s3_policy = var.blacklist_object_arn != null && var.blacklist_object_arn != "" ? 1 : 0
+  should_create_s3_policy = var.blacklist_object_arn != null ? 1 : 0
 }
 
 
