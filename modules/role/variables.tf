@@ -9,6 +9,12 @@ variable "secrets_arns" {
   default     = []
 }
 
+variable "blacklist_object_arn" {
+  description = "Arn of the blacklist file"
+  type        = string
+  default     = null
+}
+
 variable "global_tags" {
   type        = map(string)
   description = "A list of tags to apply on all newly created resources."

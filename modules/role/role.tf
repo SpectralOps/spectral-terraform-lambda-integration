@@ -1,3 +1,8 @@
+locals {
+  should_create_s3_policy = var.blacklist_object_arn != null ? 1 : 0
+}
+
+
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
     sid    = ""
@@ -20,6 +25,32 @@ resource "aws_iam_role" "lambda_execution_role" {
     var.global_tags,
     lookup(var.tags, "iam", {}),
   )
+}
+
+data "aws_iam_policy_document" "s3_policy_document" {
+  count = local.should_create_s3_policy
+  statement {
+    sid       = ""
+    effect    = "Allow"
+    actions   = ["s3:GetObject"]
+    resources = [var.blacklist_object_arn]
+  }
+}
+
+resource "aws_iam_policy" "s3_iam_policy" {
+  count  = local.should_create_s3_policy
+  policy = data.aws_iam_policy_document.s3_policy_document[count.index].json
+
+  tags = merge(
+    var.global_tags,
+    lookup(var.tags, "iam", {}),
+  )
+}
+
+resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
+  count      = local.should_create_s3_policy
+  role       = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.s3_iam_policy[count.index].arn
 }
 
 data "aws_iam_policy_document" "secrets_policy_document" {

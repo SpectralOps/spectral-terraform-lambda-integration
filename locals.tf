@@ -13,5 +13,6 @@ locals {
   # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
   api_triggered_function_name = local.single_lambda_integration ? local.resource_name_pattern : "${local.resource_name_pattern}-frontend"
   # Merge user env vars with env vars which are not based on user input
-  env_vars = merge(var.env_vars, { HOME = "/tmp" })
+  env_vars           = merge(var.env_vars, { HOME = "/tmp" })
+  blacklist_file_arn = contains(keys(var.env_vars), "S3_BLACK_LIST_OBJECT_KEY") && contains(keys(var.env_vars), "S3_BLACK_LIST_BUCKET_NAME") ? "arn:aws:s3:::${var.env_vars.S3_BLACK_LIST_BUCKET_NAME}/${var.env_vars.S3_BLACK_LIST_OBJECT_KEY}" : null
 }
