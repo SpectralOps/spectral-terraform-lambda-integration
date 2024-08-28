@@ -8,7 +8,7 @@ locals {
   shared_default_secrets_names = ["Spectral_Dsn"]
   default_secrets_names = {
     "github" = coalesce(var.secrets_names, concat(local.shared_default_secrets_names, ["Spectral_GithubBot_PrivateKey", "Spectral_GithubBot_WebhookSecret"])),
-    "gitlab" = coalesce(var.secrets_names, concat(local.shared_default_secrets_names, ["Spectral_GitlabBot_GitlabToken", "Spectral_GitlabBot_WebhookSecret"]))
+    "gitlab" = coalesce(var.secrets_names, concat(local.shared_default_secrets_names, ["Spectral_GitlabBot_AccesToken", "Spectral_GitlabBot_WebhookSecret"]))
   }
   # Please do not change or replace the 'frontend' suffix since there a logic in the bot based in it
   api_triggered_function_name = local.single_lambda_integration ? local.resource_name_pattern : "${local.resource_name_pattern}-frontend"
