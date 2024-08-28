@@ -11,10 +11,22 @@ resource "aws_api_gateway_rest_api" "gateway_rest_api" {
   )
 }
 
-resource "aws_api_gateway_resource" "event_resource" {
+resource "aws_api_gateway_resource" "api_resource" {
   rest_api_id = aws_api_gateway_rest_api.gateway_rest_api.id
   parent_id   = aws_api_gateway_rest_api.gateway_rest_api.root_resource_id
-  path_part   = "spectral_${var.integration_type}_event"
+  path_part   = "api"
+}
+
+resource "aws_api_gateway_resource" "bot_resource" {
+  rest_api_id = aws_api_gateway_rest_api.gateway_rest_api.id
+  parent_id   = aws_api_gateway_resource.api_resource.id
+  path_part   = var.integration_type
+}
+
+resource "aws_api_gateway_resource" "event_resource" {
+  rest_api_id = aws_api_gateway_rest_api.gateway_rest_api.id
+  parent_id   = aws_api_gateway_resource.bot_resource.id
+  path_part   = "event"
 }
 
 resource "aws_api_gateway_method" "get_method" {
