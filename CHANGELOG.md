@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2024-09-01
+
+### Added
+
+- Support to Gitlab bot deployment integration
+
+### Changed
+
+- API gateway path
+
 ## [3.0.0] - 2024-06-25
 
 ### Added
