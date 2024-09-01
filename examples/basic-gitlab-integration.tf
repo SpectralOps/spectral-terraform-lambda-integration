@@ -7,7 +7,7 @@ module "spectral_lambda_integration" {
     # Required environment variables 
     SPECTRAL_DSN          = "MySpectralDSN"
     CHECK_POLICY          = "Fail on any issue" # (Fail on any issue / Fail on warnings and above / Fail on errors only / Always Pass)
-    GITLAB_TOKEN          = "MyGitlabToken"
+    GITLAB_ACCESS_TOKEN   = "MyGitlabToken"
     GITLAB_WEBHOOK_SECRET = "MyGitlabWebhookSecret"
     # Optional environment variables
     # STRICT_MODE   = false / true
