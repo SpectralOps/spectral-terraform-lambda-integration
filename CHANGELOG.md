@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1] - 2024-09-29
+
+### Changed
+
+- **Spectral Bot Update (GitHub & GitLab)**: Upgraded to version `2.2.0`.
+  - **New Feature**: The bot now supports handling GitHub `synchronize` events for pull requests, enabling scanning of code contributions during updates.
+
 ## [4.0.0] - 2024-09-01
 
 ### Added
