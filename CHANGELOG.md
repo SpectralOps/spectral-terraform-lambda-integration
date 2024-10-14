@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.2] - 2024-10-14
+
+### Added
+- Support for self signed SSL certificate for gitlab self hosted
+
 ## [4.0.1] - 2024-09-29
 
 ### Changed
