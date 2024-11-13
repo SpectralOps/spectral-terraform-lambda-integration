@@ -1,6 +1,12 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
+## [4.1.0] - 2024-11-13
+### Added
+- Support for self hosted github
+
+### Changed
+- Improve bot logging, reduce default log level to `info` instead of `debug`
 
 ## [4.0.2] - 2024-10-14
 
