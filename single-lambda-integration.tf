@@ -16,4 +16,6 @@ module "lambda_function" {
   lambda_source_code_filename = "app.zip"
   lambda_source_code_path     = var.lambda_source_code_path
   role_arn                    = module.lambda_role.lambda_role_arn
+  vpc_config                  = var.vpc_config
+  lambda_role_id              = module.lambda_role.lambda_role_id
 }

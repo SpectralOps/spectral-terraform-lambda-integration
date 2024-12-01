@@ -86,8 +86,22 @@ variable "role_arn" {
   description = "The lambda source code filename"
 }
 
+variable "lambda_role_id" {
+  type        = string
+  description = "The lambda role id"
+}
+
 variable "lambda_handler" {
   type        = string
   description = "The handler of the handler"
   default     = "handler.app"
+}
+
+variable "vpc_config" {
+  type        = object({
+    subnet_ids         = list(string)
+    security_group_ids = list(string)
+  })
+  description = "The VPC configuration for the lambda"
+  default     = null
 }
