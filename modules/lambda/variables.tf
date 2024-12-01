@@ -98,7 +98,7 @@ variable "lambda_handler" {
 }
 
 variable "vpc_config" {
-  type        = object({
+  type = object({
     subnet_ids         = list(string)
     security_group_ids = list(string)
   })

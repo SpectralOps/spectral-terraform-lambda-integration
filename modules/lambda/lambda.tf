@@ -50,7 +50,7 @@ resource "aws_cloudwatch_log_group" "lambda_log_group" {
 
 data "aws_iam_policy" "lambda_vpc_policy" {
   count = var.vpc_config != null ? 1 : 0
-  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWSLambdaENIManagementAccess"
+  arn   = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWSLambdaENIManagementAccess"
 }
 
 resource "aws_iam_role_policy" "lambda_vpc_policy" {
