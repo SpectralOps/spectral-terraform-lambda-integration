@@ -52,6 +52,7 @@ Terraform configuration used to create the required AWS resources for integratin
 | <a name="input_secrets_names"></a> [secrets\_names](#input\_secrets\_names) | Names of secrets to create | `list(string)` | `null` | no |
 | <a name="input_store_secret_in_secrets_manager"></a> [store\_secret\_in\_secrets\_manager](#input\_store\_secret\_in\_secrets\_manager) | Whether to store your secrets in secrets manager, default is false | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A collection of tags grouped by key representing it's target resource. | `map(map(string))` | <pre>{<br>  "api_gateway": {},<br>  "iam": {},<br>  "lambda": {}<br>}</pre> | no |
+| <a name="input_vpc_config"></a> [vpc\_config](#input\_vpc\_config) | Configuration block for VPC settings for the Lambda function, including subnet IDs and security group IDs. | <pre>object({<br>  subnet_ids         = list(string)<br>  security_group_ids = list(string)<br>})</pre> | `null` | no |
 
 ### env_vars
 
