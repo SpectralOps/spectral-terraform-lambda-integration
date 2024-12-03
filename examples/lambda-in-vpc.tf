@@ -9,8 +9,11 @@ module "spectral_lambda_integration" {
     CHECK_POLICY          = "Fail on any issue" # (Fail on any issue / Fail on warnings and above / Fail on errors only / Always Pass)
     GITLAB_ACCESS_TOKEN   = "MyGitlabToken"
     GITLAB_WEBHOOK_SECRET = "MyGitlabWebhookSecret"
-    # Optional environment variables
-    # STRICT_MODE   = false / true
-    # SPECTRAL_TAGS = "iac,base,audit"
+  }
+  
+  # With VPC configuration
+  vpc_config = {
+    subnet_ids         = ["subnet-12345678", "subnet-87654321"]
+    security_group_ids = ["sg-12345678"]
   }
 }

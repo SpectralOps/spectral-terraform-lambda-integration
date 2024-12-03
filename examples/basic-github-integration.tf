@@ -28,10 +28,4 @@ module "spectral_lambda_integration" {
     STRICT_MODE                        = false
     SPECTRAL_TAGS                      = "iac,base,audit"
   }
-
-  # With VPC configuration
-  vpc_config = {
-    subnet_ids         = ["subnet-12345678", "subnet-87654321"]
-    security_group_ids = ["sg-12345678"]
-  }
 }
