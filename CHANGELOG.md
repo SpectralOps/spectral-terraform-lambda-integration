@@ -1,6 +1,11 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
+
+## [4.2.0] - 2024-12-01
+### Added
+- Added VPC support to Lambda function
+
 ## [4.1.0] - 2024-11-13
 ### Added
 - Support for self hosted github

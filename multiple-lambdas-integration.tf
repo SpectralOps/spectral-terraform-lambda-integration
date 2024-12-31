@@ -18,6 +18,8 @@ module "frontend_lambda_function" {
   lambda_source_code_filename = "frontend.zip"
   lambda_source_code_path     = var.frontend_lambda_source_code_path
   role_arn                    = module.lambda_role.lambda_role_arn
+  vpc_config                  = var.vpc_config
+  lambda_role_id              = module.lambda_role.lambda_role_id
 }
 
 module "backend_lambda_function" {
@@ -40,6 +42,8 @@ module "backend_lambda_function" {
   lambda_source_code_filename = "backend.zip"
   lambda_source_code_path     = var.backend_lambda_source_code_path
   role_arn                    = module.lambda_role.lambda_role_arn
+  vpc_config                  = var.vpc_config
+  lambda_role_id              = module.lambda_role.lambda_role_id
 }
 
 data "aws_iam_policy_document" "lambda_invoke_policy_document" {

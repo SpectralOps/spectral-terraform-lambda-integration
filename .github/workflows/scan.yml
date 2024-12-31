@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install and run Spectral CI
-        uses: spectralops/spectral-github-action@v3
+        uses: spectralops/spectral-github-action@v4
         with:
           spectral-dsn: ${{ env.SPECTRAL_DSN }}
           spectral-args: scan --unpack --ok --engines secrets,iac
